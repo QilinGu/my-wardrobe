@@ -16,11 +16,13 @@ public class CategoriesTableVC : UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
     }
+    
+    public override func viewWillAppear(animated: Bool) {
+        categories = Database.sharedInstance().getCategoriesList()
+        tableView.reloadData()
+    }
     	    
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (categories == nil) {
-            categories = Database.sharedInstance().getCategoriesList()
-        }
         if let cats = categories {
             return cats.count
         }

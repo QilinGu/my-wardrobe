@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -38,6 +38,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="FsH-re-fxx" kind="show" id="t5I-eV-Uoc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -57,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="2008" y="520"/>
         </scene>
-        <!--New CategoryVC-->
+        <!--New category-->
         <scene sceneID="SXz-UO-EN6">
             <objects>
                 <viewController id="cVG-eZ-Rnp" customClass="NewCategoryVC" customModule="MyWardrope" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,9 +73,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjb-Z7-qhl">
-                                <rect key="frame" x="43" y="101" width="514" height="30"/>
+                                <rect key="frame" x="43" y="132" width="514" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editCategoryName:" destination="cVG-eZ-Rnp" eventType="editingChanged" id="DOr-tC-R1g"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qP7-7z-Z2y">
                                 <rect key="frame" x="250" y="183" width="100" height="30"/>
@@ -85,26 +91,47 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3b-hc-faV">
-                                <rect key="frame" x="180" y="251" width="240" height="265"/>
+                                <rect key="frame" x="180" y="251" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="THH-fn-h0L"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47M-QC-Ek2">
+                                <rect key="frame" x="273" y="84" width="54" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="v8m-1a-ih3"/>
+                                </constraints>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitNewCategory:" destination="cVG-eZ-Rnp" eventType="touchUpInside" id="wUL-dk-FaP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xjb-Z7-qhl" firstAttribute="centerX" secondItem="AkT-rW-lb0" secondAttribute="centerX" id="1Yx-Af-SUs"/>
                             <constraint firstItem="qP7-7z-Z2y" firstAttribute="centerX" secondItem="xjb-Z7-qhl" secondAttribute="centerX" id="6qZ-5o-Jj0"/>
-                            <constraint firstItem="xjb-Z7-qhl" firstAttribute="top" secondItem="iwA-vh-qe2" secondAttribute="bottom" constant="37" id="HKw-Jp-sK1"/>
-                            <constraint firstItem="ALi-1g-dep" firstAttribute="top" secondItem="x3b-hc-faV" secondAttribute="bottom" constant="35" id="TIq-td-Wht"/>
+                            <constraint firstItem="xjb-Z7-qhl" firstAttribute="top" secondItem="iwA-vh-qe2" secondAttribute="bottom" constant="68" id="HKw-Jp-sK1"/>
+                            <constraint firstItem="ALi-1g-dep" firstAttribute="top" secondItem="x3b-hc-faV" secondAttribute="bottom" constant="60" id="TIq-td-Wht"/>
+                            <constraint firstItem="xjb-Z7-qhl" firstAttribute="top" secondItem="47M-QC-Ek2" secondAttribute="bottom" constant="18" id="VJ4-lO-zsg"/>
                             <constraint firstItem="x3b-hc-faV" firstAttribute="centerX" secondItem="qP7-7z-Z2y" secondAttribute="centerX" id="ahE-nz-ejv"/>
-                            <constraint firstItem="qP7-7z-Z2y" firstAttribute="top" secondItem="xjb-Z7-qhl" secondAttribute="bottom" constant="52" id="beX-1O-rlY"/>
+                            <constraint firstItem="qP7-7z-Z2y" firstAttribute="top" secondItem="xjb-Z7-qhl" secondAttribute="bottom" constant="21" id="beX-1O-rlY"/>
+                            <constraint firstItem="47M-QC-Ek2" firstAttribute="centerX" secondItem="xjb-Z7-qhl" secondAttribute="centerX" id="fuO-wY-GZD"/>
                             <constraint firstItem="x3b-hc-faV" firstAttribute="top" secondItem="qP7-7z-Z2y" secondAttribute="bottom" constant="38" id="rzZ-Rc-MSb"/>
                             <constraint firstItem="xjb-Z7-qhl" firstAttribute="leading" secondItem="AkT-rW-lb0" secondAttribute="leadingMargin" constant="23" id="zrn-q8-dRc"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New category" id="AXl-zR-MRY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="0zx-wo-lBm">
+                            <connections>
+                                <action selector="onCancel:" destination="cVG-eZ-Rnp" id="r1g-Dz-feb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="categoryNameTxtField" destination="xjb-Z7-qhl" id="SGZ-La-UXK"/>
                         <outlet property="imageView" destination="x3b-hc-faV" id="iea-ba-i8c"/>
+                        <outlet property="submitBtn" destination="47M-QC-Ek2" id="zu5-gY-ceB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzB-0j-4Wj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,6 +172,135 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Oh-Fn-qrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="848" y="-630"/>
+        </scene>
+        <!--Sub category-->
+        <scene sceneID="0Ba-sd-ZG8">
+            <objects>
+                <tableViewController title="Sub category" id="FsH-re-fxx" customClass="SubCategoryTableVC" customModule="MyWardrope" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5eB-Iy-TgK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCellSubCaterogy" textLabel="gtN-sV-mxB" detailTextLabel="pOD-TH-cmM" style="IBUITableViewCellStyleValue1" id="QI8-nO-8V0">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QI8-nO-8V0" id="4YQ-DH-PHc">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gtN-sV-mxB">
+                                            <rect key="frame" x="15" y="12" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOD-TH-cmM">
+                                            <rect key="frame" x="523" y="12" width="42" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FsH-re-fxx" id="7K4-7q-KJ1"/>
+                            <outlet property="delegate" destination="FsH-re-fxx" id="PiL-29-IFn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="3FT-vs-NOg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GO8-h3-1dn">
+                            <connections>
+                                <segue destination="5be-Cd-Swy" kind="show" id="7Km-IB-OXd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="712-24-cux" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2008" y="1322"/>
+        </scene>
+        <!--New sub category-->
+        <scene sceneID="2TE-LL-zVO">
+            <objects>
+                <viewController id="5be-Cd-Swy" customClass="NewSubCategoryVC" customModule="MyWardrope" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T6e-YX-Thb"/>
+                        <viewControllerLayoutGuide type="bottom" id="tvg-jK-v4u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EW6-8X-mFd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSJ-Cv-tO8">
+                                <rect key="frame" x="43" y="132" width="514" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editSubCatName:" destination="5be-Cd-Swy" eventType="editingChanged" id="Pgw-9T-xR7"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9J-8u-Lfi">
+                                <rect key="frame" x="250" y="183" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="NBm-Mj-rlQ"/>
+                                </constraints>
+                                <state key="normal" title="Add a photo"/>
+                                <connections>
+                                    <action selector="addImage:" destination="5be-Cd-Swy" eventType="touchUpInside" id="fCz-Ef-HZG"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rug-M1-kqS">
+                                <rect key="frame" x="180" y="251" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="fRg-VZ-mVO"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-Yy-mi9">
+                                <rect key="frame" x="273" y="84" width="54" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="GHS-tl-Tx2"/>
+                                </constraints>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitNewSubCategory:" destination="5be-Cd-Swy" eventType="touchUpInside" id="7OB-0n-Chp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rug-M1-kqS" firstAttribute="top" secondItem="F9J-8u-Lfi" secondAttribute="bottom" constant="38" id="EVs-XW-b4j"/>
+                            <constraint firstItem="ewF-Yy-mi9" firstAttribute="centerX" secondItem="kSJ-Cv-tO8" secondAttribute="centerX" id="IDN-G4-pDZ"/>
+                            <constraint firstItem="kSJ-Cv-tO8" firstAttribute="leading" secondItem="EW6-8X-mFd" secondAttribute="leadingMargin" constant="23" id="Ja8-F8-c2k"/>
+                            <constraint firstItem="F9J-8u-Lfi" firstAttribute="centerX" secondItem="kSJ-Cv-tO8" secondAttribute="centerX" id="NDR-uJ-Wxe"/>
+                            <constraint firstItem="kSJ-Cv-tO8" firstAttribute="centerX" secondItem="EW6-8X-mFd" secondAttribute="centerX" id="R8J-3c-GMe"/>
+                            <constraint firstItem="kSJ-Cv-tO8" firstAttribute="top" secondItem="ewF-Yy-mi9" secondAttribute="bottom" constant="18" id="Rf0-B4-Ojj"/>
+                            <constraint firstItem="kSJ-Cv-tO8" firstAttribute="top" secondItem="T6e-YX-Thb" secondAttribute="bottom" constant="68" id="jvq-cp-zHj"/>
+                            <constraint firstItem="F9J-8u-Lfi" firstAttribute="top" secondItem="kSJ-Cv-tO8" secondAttribute="bottom" constant="21" id="teo-6I-GUg"/>
+                            <constraint firstItem="tvg-jK-v4u" firstAttribute="top" secondItem="rug-M1-kqS" secondAttribute="bottom" constant="60" id="wbD-rp-LXl"/>
+                            <constraint firstItem="rug-M1-kqS" firstAttribute="centerX" secondItem="F9J-8u-Lfi" secondAttribute="centerX" id="xMd-f7-bJl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New sub category" id="c1Z-NR-CHe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="VKn-cI-m8m">
+                            <connections>
+                                <action selector="onCancel:" destination="5be-Cd-Swy" id="8CS-8y-zBw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="categoryNameTxtField" destination="kSJ-Cv-tO8" id="vZT-8B-Nqf"/>
+                        <outlet property="imageView" destination="rug-M1-kqS" id="Uh1-hG-rWy"/>
+                        <outlet property="submitBtn" destination="ewF-Yy-mi9" id="eIT-Ub-04F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7n7-vS-8K1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2687" y="1322"/>
         </scene>
     </scenes>
 </document>

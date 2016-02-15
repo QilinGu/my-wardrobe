@@ -12,17 +12,23 @@ public typealias Category = (name: String, image: UIImage?)
 
 public protocol DBAPI {
     func getCategoriesList() -> [Category]
+    func getSubCategoriesList() -> [Category]
+    func addNewCategory(name: String, image: UIImage?)
+    func addNewSubCategory(category: String, name: String, image: UIImage?)
 }
 
 public class Database {
+    static let mockedDB = MockedDB()
     public static func sharedInstance() -> DBAPI {
-        return MockedDB()
+        return mockedDB
     }
 }
 
 public class MockedDB : DBAPI {
-    public func getCategoriesList() -> [Category] {
-        var cats = [Category]()
+    var cats = [Category]()
+    var subcats = [Category]()
+
+    public init() {
         cats.append(("Dress", UIImage(named: "Dress")))
         cats.append(("Skirt", UIImage(named: "Skirt")))
         cats.append(("Jean", nil))
@@ -32,10 +38,26 @@ public class MockedDB : DBAPI {
         cats.append(("Jacket", nil))
         cats.append(("Shoes", nil))
         cats.append(("Boots", nil))
-        cats.append(("Earring", nil))
-        cats.append(("Necklace", nil))
-        cats.append(("Bracelet", nil))
-        
+        cats.append(("Jewelry", nil))
+        subcats.append(("Earring", nil))
+        subcats.append(("Necklace", nil))
+        subcats.append(("Bracelet", nil))
+    }
+    
+    public func getCategoriesList() -> [Category] {
         return cats
+    }
+    
+    public func getSubCategoriesList() -> [Category] {
+        return subcats
+    }
+
+    
+    public func addNewCategory(name: String, image: UIImage?) -> () {
+        cats.append((name, image))
+    }
+    
+    public func addNewSubCategory(category: String, name: String, image: UIImage?) {
+        subcats.append((name, image))
     }
 }

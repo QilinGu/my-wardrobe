@@ -9,8 +9,27 @@
 import UIKit
 
 public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var categoryNameTxtField: UITextField!
     var imagePicker = UIImagePickerController()
+    
+    @IBAction func editCategoryName(sender: UITextField) {
+        if let textEntered = categoryNameTxtField.text where !textEntered.isEmpty {
+            submitBtn.enabled = true
+        } else {
+            submitBtn.enabled = false
+        }
+    }
+    
+    @IBAction func submitNewCategory(sender: AnyObject) {
+        Database.sharedInstance().addNewCategory(categoryNameTxtField.text!, image: imageView.image)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func onCancel(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     
     @IBAction func addImage(sender: AnyObject) {
         let optionMenu = UIAlertController(title: NSLocalizedString("VerificationSession.addItem.actionSheet.title", comment: ""), message: nil, preferredStyle: .ActionSheet)
@@ -45,10 +64,6 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
         optionMenu.addAction(chooseAPhoto)
         optionMenu.addAction(dismissAction)
         self.presentViewController(optionMenu, animated: true, completion: nil)
-
-        
-        
-        
         
     }
     
