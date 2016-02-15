@@ -10,6 +10,12 @@ import UIKit
 
 public class CategoriesTableVC : UITableViewController {
     var categories: [Category]?
+    
+    public override func viewDidLoad() {
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
+    }
     	    
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (categories == nil) {

@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		794AF0BE1C71FD0200C5E8DB /* NewCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794AF0BD1C71FD0200C5E8DB /* NewCategoryVC.swift */; };
 		8472C2FD1C6F992E00802C6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C2FC1C6F992E00802C6D /* AppDelegate.swift */; };
-		8472C2FF1C6F992E00802C6D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C2FE1C6F992E00802C6D /* FirstViewController.swift */; };
-		8472C3011C6F992E00802C6D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C3001C6F992E00802C6D /* SecondViewController.swift */; };
 		8472C3041C6F992E00802C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3021C6F992E00802C6D /* Main.storyboard */; };
 		8472C3061C6F992E00802C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3051C6F992E00802C6D /* Assets.xcassets */; };
 		8472C3091C6F992E00802C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3071C6F992E00802C6D /* LaunchScreen.storyboard */; };
@@ -19,10 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		794AF0BD1C71FD0200C5E8DB /* NewCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryVC.swift; sourceTree = "<group>"; };
 		8472C2F91C6F992E00802C6D /* MyWardrope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWardrope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8472C2FC1C6F992E00802C6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8472C2FE1C6F992E00802C6D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		8472C3001C6F992E00802C6D /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8472C3031C6F992E00802C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8472C3051C6F992E00802C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8472C3081C6F992E00802C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,9 +83,8 @@
 		8472C3171C6F9C0400802C6D /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				8472C2FE1C6F992E00802C6D /* FirstViewController.swift */,
-				8472C3001C6F992E00802C6D /* SecondViewController.swift */,
 				8472C3101C6F9B3B00802C6D /* CategoriesTableVC.swift */,
+				794AF0BD1C71FD0200C5E8DB /* NewCategoryVC.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -172,11 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8472C3011C6F992E00802C6D /* SecondViewController.swift in Sources */,
 				8472C3131C6F9B9400802C6D /* DBAPI.swift in Sources */,
 				8472C3111C6F9B3B00802C6D /* CategoriesTableVC.swift in Sources */,
 				8472C2FD1C6F992E00802C6D /* AppDelegate.swift in Sources */,
-				8472C2FF1C6F992E00802C6D /* FirstViewController.swift in Sources */,
+				794AF0BE1C71FD0200C5E8DB /* NewCategoryVC.swift in Sources */,
 				8472C3151C6F9BEE00802C6D /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +327,7 @@
 				8472C30F1C6F992E00802C6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

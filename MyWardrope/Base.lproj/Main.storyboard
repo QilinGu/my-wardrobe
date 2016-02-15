@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="2008" y="520"/>
         </scene>
-        <!--View Controller-->
+        <!--New CategoryVC-->
         <scene sceneID="SXz-UO-EN6">
             <objects>
-                <viewController id="cVG-eZ-Rnp" sceneMemberID="viewController">
+                <viewController id="cVG-eZ-Rnp" customClass="NewCategoryVC" customModule="MyWardrope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iwA-vh-qe2"/>
                         <viewControllerLayoutGuide type="bottom" id="ALi-1g-dep"/>
@@ -74,14 +74,38 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qP7-7z-Z2y">
+                                <rect key="frame" x="250" y="183" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Vjf-5Z-MEj"/>
+                                </constraints>
+                                <state key="normal" title="Add a photo"/>
+                                <connections>
+                                    <action selector="addImage:" destination="cVG-eZ-Rnp" eventType="touchUpInside" id="T7c-Ut-Mji"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x3b-hc-faV">
+                                <rect key="frame" x="180" y="251" width="240" height="265"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="THH-fn-h0L"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xjb-Z7-qhl" firstAttribute="centerX" secondItem="AkT-rW-lb0" secondAttribute="centerX" id="1Yx-Af-SUs"/>
+                            <constraint firstItem="qP7-7z-Z2y" firstAttribute="centerX" secondItem="xjb-Z7-qhl" secondAttribute="centerX" id="6qZ-5o-Jj0"/>
                             <constraint firstItem="xjb-Z7-qhl" firstAttribute="top" secondItem="iwA-vh-qe2" secondAttribute="bottom" constant="37" id="HKw-Jp-sK1"/>
+                            <constraint firstItem="ALi-1g-dep" firstAttribute="top" secondItem="x3b-hc-faV" secondAttribute="bottom" constant="35" id="TIq-td-Wht"/>
+                            <constraint firstItem="x3b-hc-faV" firstAttribute="centerX" secondItem="qP7-7z-Z2y" secondAttribute="centerX" id="ahE-nz-ejv"/>
+                            <constraint firstItem="qP7-7z-Z2y" firstAttribute="top" secondItem="xjb-Z7-qhl" secondAttribute="bottom" constant="52" id="beX-1O-rlY"/>
+                            <constraint firstItem="x3b-hc-faV" firstAttribute="top" secondItem="qP7-7z-Z2y" secondAttribute="bottom" constant="38" id="rzZ-Rc-MSb"/>
                             <constraint firstItem="xjb-Z7-qhl" firstAttribute="leading" secondItem="AkT-rW-lb0" secondAttribute="leadingMargin" constant="23" id="zrn-q8-dRc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="x3b-hc-faV" id="iea-ba-i8c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzB-0j-4Wj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
