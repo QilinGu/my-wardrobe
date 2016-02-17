@@ -14,10 +14,15 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var categoryNameTxtField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var imagePicker = UIImagePickerController()
-
+    var category: String!
     
     @IBAction func submitNewSubCategory(sender: AnyObject) {
-        Database.sharedInstance().addNewSubCategory("", name:  categoryNameTxtField.text!, image: imageView.image)
+        if let image = imageView.image {
+            let storedImage = UIImageHelper.resizeImage(image, newWidth: 64, newHeight: 64)
+            Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, image: storedImage)
+        } else {
+            Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, image: nil)
+        }
         navigationController?.popViewControllerAnimated(true)
     }
     

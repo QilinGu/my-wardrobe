@@ -23,7 +23,12 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func submitNewCategory(sender: AnyObject) {
-        Database.sharedInstance().addNewCategory(categoryNameTxtField.text!, image: imageView.image)
+        if let image = imageView.image {
+            let storedImage = UIImageHelper.resizeImage(image, newWidth: 64, newHeight: 64)
+            Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, image: storedImage)
+        } else {
+            Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, image: nil)
+        }
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -75,4 +80,5 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
         imageView.image = image
         
     }
+    
 }
