@@ -113,21 +113,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="300" id="djA-fw-D3v">
-                                <rect key="frame" x="0.0" y="92" width="600" height="300"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="320" id="djA-fw-D3v">
+                                <rect key="frame" x="0.0" y="92" width="600" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="djA-fw-D3v" id="PWO-1y-v80">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keP-8u-9nc">
-                                            <rect key="frame" x="8" y="0.0" width="584" height="299"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="keP-8u-9nc">
+                                            <rect key="frame" x="8" y="10" width="584" height="300"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="keP-8u-9nc" firstAttribute="trailing" secondItem="PWO-1y-v80" secondAttribute="trailingMargin" id="WVG-sD-3Nx"/>
-                                        <constraint firstAttribute="bottom" secondItem="keP-8u-9nc" secondAttribute="bottom" id="eKX-A2-fRh"/>
-                                        <constraint firstItem="keP-8u-9nc" firstAttribute="top" secondItem="PWO-1y-v80" secondAttribute="top" id="ehu-BC-Ufb"/>
+                                        <constraint firstAttribute="bottom" secondItem="keP-8u-9nc" secondAttribute="bottom" constant="10" id="eKX-A2-fRh"/>
+                                        <constraint firstItem="keP-8u-9nc" firstAttribute="top" secondItem="PWO-1y-v80" secondAttribute="top" constant="10" id="ehu-BC-Ufb"/>
                                         <constraint firstItem="keP-8u-9nc" firstAttribute="leading" secondItem="PWO-1y-v80" secondAttribute="leadingMargin" id="uws-cg-FkZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -138,6 +138,16 @@
                             <outlet property="delegate" destination="e8B-aW-TbP" id="Jus-Ni-Pvs"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dpv-Yp-1vX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="O0H-xu-92R">
+                            <connections>
+                                <action selector="btnAdd:" destination="e8B-aW-TbP" id="G2T-lF-8A9"/>
+                                <segue destination="qiv-aS-Tdn" kind="show" identifier="AddToCollection" id="qHq-Vy-ldQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klX-J3-eVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -572,6 +582,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hzs-tV-IOF"/>
+        <segue reference="qHq-Vy-ldQ"/>
     </inferredMetricsTieBreakers>
 </document>

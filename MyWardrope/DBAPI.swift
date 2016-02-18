@@ -25,6 +25,8 @@ public protocol DBAPI {
     func deleteCategory(index: Int)
     func deleteSubCategory(category: String, indexOfSubcategory: Int)
     func deletePhotoFromCategory(category: String, subcategory: String, imageIndex: Int)
+    func deleteCombination(index: Int)
+    func deleteImageFromCombination(imageIndex: Int, combinationIndex: Int)
 }
 
 public class Database {
@@ -116,12 +118,19 @@ public class MockedDB : DBAPI {
         if (combinations.count == combinationIndex) {
             combinations.append([image])
         } else {
-            var images = combinations[combinationIndex]
-            images.append(image)            
+            combinations[combinationIndex].append(image)
         }
     }
     
     public func getNbCombinations() -> Int {
         return combinations.count
+    }
+    
+    public func deleteCombination(index: Int) {
+        combinations.removeAtIndex(index)
+    }
+    
+    public func deleteImageFromCombination(imageIndex: Int, combinationIndex: Int) {
+        combinations[combinationIndex].removeAtIndex(imageIndex)
     }
 }

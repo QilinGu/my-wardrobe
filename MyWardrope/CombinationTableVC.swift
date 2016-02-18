@@ -56,9 +56,25 @@ public class CombinationTableVC : UITableViewController {
                 let imgView = cell.viewWithTag(100 + i) as! UIImageView
                 imgView.image = combination[i]
             }
-            
+            if (count < 6) {
+                for (var i = count; i < 6; i++) {
+                    let imgView = cell.viewWithTag(100 + i) as! UIImageView
+                    imgView.image = nil
+                }
+            }
         }
         
         return cell
+    }
+    
+    public override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            Database.sharedInstance.deleteCombination(indexPath.row)
+            updateTable()
+        }
     }
 }
