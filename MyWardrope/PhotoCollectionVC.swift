@@ -11,17 +11,16 @@ import UIKit
 typealias SubCategoryInfo = (category: String, subcategory: String)
 
 public class PhotoCollectionVC : UICollectionViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    var images : [UIImage]?
     var imagePicker = UIImagePickerController()
-    var subcatgoryInfo: SubCategoryInfo!
-    var combinationIndex = -1
+    var subcategory: SubCategory!
+    var combination: Combination?
     
     public override func viewDidLoad() {
-        if (combinationIndex >= 0) {
+        if let _ = combination {
             navigationItem.rightBarButtonItem = nil
         }
         
-        self.title = subcatgoryInfo.subcategory
+        self.title = subcategory.name
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -29,12 +28,11 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
     }
     
     private func updateCollection() {
-        images = Database.sharedInstance.getPhotosFromCategory(subcatgoryInfo.category, subcategory: subcatgoryInfo.subcategory)
         collectionView?.reloadData()
     }
     
     public override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let allImages = images {
+        if let allImages = subcategory.photos {
             return allImages.count
         }
         
@@ -43,9 +41,9 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
     
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath)
-        if let _images = images {
+        if let _images = subcategory.photos {
             let imageView = cell.viewWithTag(100) as! UIImageView
-            imageView.image = _images[indexPath.row]
+            imageView.image = _images[indexPath.row].photoImage()
         }
         return cell
     }
@@ -54,11 +52,20 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
         if (segue.identifier == "ShowPhoto") {
             let nextvc = segue.destinationViewController as! PhotoViewVC
             let index = (collectionView?.indexPathsForSelectedItems()?.first?.row)!
-            nextvc.imageInfo = (subcatgoryInfo.category, subcatgoryInfo.subcategory, index,  images![index])
-            nextvc.combinationIndex = combinationIndex
+            nextvc.photo = subcategory.photos![index]
+            nextvc.combination = combination
         }
     }
     
+    @IBAction func btnPhotoLibrary(sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
+            self.imagePicker.allowsEditing = false
+        
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        }
+    }
     @IBAction func btnCamera(sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
             self.imagePicker.delegate = self
@@ -74,8 +81,7 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
             
         })
         
-        let img = UIImageHelper.resizeImage(image, newWidth: 300)
-        Database.sharedInstance.addPhotoToCategory("", subcategory: "", image: img)
+        Database.sharedInstance.addPhotoToSubCategory(subcategory, photo: image)
         updateCollection()
     }
 

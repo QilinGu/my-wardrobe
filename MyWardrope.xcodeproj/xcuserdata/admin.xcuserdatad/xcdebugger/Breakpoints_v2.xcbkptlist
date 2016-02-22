@@ -9,13 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyWardrope/DBAPI.swift"
-            timestampString = "477521495.118354"
+            filePath = "MyWardrope/MyCoreData.swift"
+            timestampString = "477850333.347909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "deleteImageFromCombination(_:combinationIndex:)"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "deletePhotoFromCombination(_:combination:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWardrope/MyCoreData.swift"
+            timestampString = "477850333.347909"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "addPhotoToCombination(_:combination:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

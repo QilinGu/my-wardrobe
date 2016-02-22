@@ -9,20 +9,19 @@
 import UIKit
 
 public class SubCategoryTableVC : UITableViewController {
-    var subcategories: [Category]?
-    var category: String!
-    var combinationIndex = -1
+    var category: Category!
+    var combination: Combination?
     
     public override func viewDidLoad() {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
         
-        if (combinationIndex >= 0) {
+        if let _ = combination {
             navigationItem.rightBarButtonItem = nil
         }
 
-        self.title = category
+        self.title = category.name
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -30,12 +29,11 @@ public class SubCategoryTableVC : UITableViewController {
     }
     
     private func updateTable() {
-        subcategories = Database.sharedInstance.getSubCategoriesList(category)
         tableView.reloadData()
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let cats = subcategories {
+        if let cats = category.subcategories {
             return cats.count
         }
         return 0
@@ -43,8 +41,8 @@ public class SubCategoryTableVC : UITableViewController {
     
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellSubCaterogy", forIndexPath: indexPath)
-        if let cats = subcategories {
-            cell.imageView?.image = cats[indexPath.row].image
+        if let cats = category.subcategories {
+            cell.imageView?.image = cats[indexPath.row].iconImage()
             let itemSize = CGSizeMake(32, 32);
             UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale);
             let imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
@@ -53,7 +51,12 @@ public class SubCategoryTableVC : UITableViewController {
             UIGraphicsEndImageContext();
             
             cell.textLabel?.text = cats[indexPath.row].name
-            cell.detailTextLabel?.text = "0"
+            
+            if let photos = cats[indexPath.row].photos {
+                cell.detailTextLabel?.text = String(photos.count)
+            } else {
+                cell.detailTextLabel?.text = "0"
+            }
         }
         return cell
     }
@@ -64,7 +67,7 @@ public class SubCategoryTableVC : UITableViewController {
     
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            Database.sharedInstance.deleteSubCategory(category, indexOfSubcategory: indexPath.row)
+            Database.sharedInstance.deleteSubCategory(category.subcategories![indexPath.row])
             updateTable()
         }
     }
@@ -72,8 +75,8 @@ public class SubCategoryTableVC : UITableViewController {
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ShowPhotoCollection") {
             let nextvc = segue.destinationViewController as! PhotoCollectionVC
-            nextvc.subcatgoryInfo = (category, subcategories![(tableView.indexPathForSelectedRow?.row)!].name)
-            nextvc.combinationIndex = combinationIndex
+            nextvc.subcategory = category.subcategories![(tableView.indexPathForSelectedRow?.row)!]
+            nextvc.combination = combination
             
         } else if (segue.identifier == "AddNewSubCategory") {
             let nextvc = segue.destinationViewController as! NewSubCategoryVC

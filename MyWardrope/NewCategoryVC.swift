@@ -23,12 +23,7 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func submitNewCategory(sender: AnyObject) {
-        if let image = imageView.image {
-            let storedImage = UIImageHelper.resizeImage(image, newWidth: 64, newHeight: 64)
-            Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, image: storedImage)
-        } else {
-            Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, image: nil)
-        }
+        Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, icon: imageView.image)
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -37,7 +32,7 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func addImage(sender: AnyObject) {
-        let optionMenu = UIAlertController(title: NSLocalizedString("VerificationSession.addItem.actionSheet.title", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: NSLocalizedString("Add icon to category", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
         let takeAPhoto = UIAlertAction(title: NSLocalizedString("Take a photo", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -74,11 +69,8 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
-        
-        imageView.image = image
-        
+            self.imageView.image = image
+        })        
     }
     
 }

@@ -11,24 +11,30 @@ import UIKit
 typealias CombinationInfo = (index: Int, images: [UIImage])
 
 public class CombinationViewVC : UITableViewController {
-    var combinationInfo : CombinationInfo!
+    var combination : Combination!
     
     private func updateTable() {
         tableView.reloadData()
+    }
+    
+    @IBAction func btnAllCombination(sender: AnyObject) {
+        navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func btnAdd(sender: AnyObject) {
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return combinationInfo.images.count
+        if let photos = combination.photos {
+            return photos.count
+        }
+        return 0
     }
     
-    @IBOutlet weak var btnAdd: UIBarButtonItem!
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath)
         let imgView = cell.viewWithTag(100) as! UIImageView
-        imgView.image = combinationInfo.images[indexPath.row]
+        imgView.image = combination.photos![indexPath.row].photoImage()
         return cell
     }
     
@@ -42,8 +48,8 @@ public class CombinationViewVC : UITableViewController {
     
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            Database.sharedInstance.deleteImageFromCombination(indexPath.row, combinationIndex: combinationInfo.index)
-            combinationInfo.images.removeAtIndex(indexPath.row)
+            Database.sharedInstance.deletePhotoFromCombination(combination.photos![indexPath.row], combination: combination)
+//            combination.photos!.removeAtIndex(indexPath.row)
             updateTable()
         }
     }
@@ -51,7 +57,11 @@ public class CombinationViewVC : UITableViewController {
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "AddToCollection") {
             let nextvc = segue.destinationViewController as! CategoriesTableVC
-            nextvc.combinationIndex = combinationInfo.index
+            nextvc.combination = combination
+        } else if (segue.identifier == "ShowPhoto") {
+            let nextvc = segue.destinationViewController as! PhotoViewVC
+            nextvc.photo = combination.photos![(tableView.indexPathForSelectedRow?.row)!]
+            nextvc.deletable = false
         }
     }
 }

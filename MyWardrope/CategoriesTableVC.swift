@@ -10,23 +10,24 @@ import UIKit
 
 public class CategoriesTableVC : UITableViewController {
     var categories: [Category]?
-    var combinationIndex = -1
+    var combination: Combination?
     
     public override func viewDidLoad() {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
-        if (combinationIndex >= 0) {
+        if let _ = combination {
             navigationItem.rightBarButtonItem = nil
         }
+        
     }
     
     public override func viewWillAppear(animated: Bool) {
+        categories = Database.sharedInstance.getCategoriesList()
         updateTable()
     }
     
     private func updateTable() {
-        categories = Database.sharedInstance.getCategoriesList()
         tableView.reloadData()
     }
     	    
@@ -40,7 +41,7 @@ public class CategoriesTableVC : UITableViewController {
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellCaterogy", forIndexPath: indexPath)
         if let cats = categories {
-            cell.imageView?.image = cats[indexPath.row].image
+            cell.imageView?.image = cats[indexPath.row].iconImage()
             let itemSize = CGSizeMake(32, 32);
             UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.mainScreen().scale);
             let imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
@@ -49,7 +50,18 @@ public class CategoriesTableVC : UITableViewController {
             UIGraphicsEndImageContext();
             
             cell.textLabel?.text = cats[indexPath.row].name
-            cell.detailTextLabel?.text = "0"
+            if let subcats = cats[indexPath.row].subcategories {
+                var sum = 0
+                for subcat in subcats {
+                    if let photos = subcat.photos {
+                        sum += photos.count
+                    }
+                }
+                cell.detailTextLabel?.text = String(sum)
+            } else {
+                cell.detailTextLabel?.text = "0"
+            }
+            
         }
         return cell
     }
@@ -60,7 +72,8 @@ public class CategoriesTableVC : UITableViewController {
     
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            Database.sharedInstance.deleteCategory(indexPath.row)
+            Database.sharedInstance.deleteCategory(categories![indexPath.row])
+            categories!.removeAtIndex(indexPath.row)
             updateTable()
         }
     }
@@ -68,8 +81,8 @@ public class CategoriesTableVC : UITableViewController {
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ShowSubCategory") {
             let nextvc = segue.destinationViewController as! SubCategoryTableVC
-            nextvc.category = categories![(tableView.indexPathForSelectedRow?.row)!].name
-            nextvc.combinationIndex = combinationIndex
+            nextvc.category = categories![(tableView.indexPathForSelectedRow?.row)!]
+            nextvc.combination = combination
             
         }
     }

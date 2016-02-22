@@ -14,15 +14,10 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var categoryNameTxtField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var imagePicker = UIImagePickerController()
-    var category: String!
+    var category: Category!
     
     @IBAction func submitNewSubCategory(sender: AnyObject) {
-        if let image = imageView.image {
-            let storedImage = UIImageHelper.resizeImage(image, newWidth: 64, newHeight: 64)
-            Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, image: storedImage)
-        } else {
-            Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, image: nil)
-        }
+        Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, icon: imageView.image)
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -36,7 +31,7 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func addImage(sender: AnyObject) {
-        let optionMenu = UIAlertController(title: NSLocalizedString("VerificationSession.addItem.actionSheet.title", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: NSLocalizedString("Add icon to sub category", comment: ""), message: nil, preferredStyle: .ActionSheet)
         
         let takeAPhoto = UIAlertAction(title: NSLocalizedString("Take a photo", comment: ""), style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -73,11 +68,8 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
+            self.imageView.image = image
         })
-        
-        imageView.image = image
-        
     }
     
     @IBAction func onCancel(sender: AnyObject) {

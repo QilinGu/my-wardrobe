@@ -10,14 +10,15 @@ import UIKit
 
 public class CombinationTableVC : UITableViewController {
     
-    var images : [[UIImage]]?
+    var combinations: [Combination]?
     
     private func updateTable() {
-        images = Database.sharedInstance.getCombinations()
+        combinations = Database.sharedInstance.getCombinations()
         tableView.reloadData()
     }
     
     public override func viewWillAppear(animated: Bool) {
+        Database.sharedInstance.removeEmptyCombinations()
         updateTable()
     }
     
@@ -28,20 +29,21 @@ public class CombinationTableVC : UITableViewController {
     }
     
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let nextId = combinations != nil ? combinations!.count : 0
         if (segue.identifier == "CreateCollection") {
             let nextvc = segue.destinationViewController as! CategoriesTableVC
-            nextvc.combinationIndex = Database.sharedInstance.getNbCombinations()
+            nextvc.combination = Database.sharedInstance.addNewCombination(nextId)
             
         } else if (segue.identifier == "ShowCollection") {
             let nextvc = segue.destinationViewController as! CombinationViewVC
             let index = (tableView.indexPathForSelectedRow?.row)!
-            nextvc.combinationInfo = (index, images![index])
+            nextvc.combination = combinations![index]
         }
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let _images = images {
-            return _images.count
+        if let _combinations = combinations {
+            return _combinations.count
         }
         return 0
     }
@@ -49,12 +51,11 @@ public class CombinationTableVC : UITableViewController {
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CombinationCell", forIndexPath: indexPath)
         
-        if let _images = images {
-            let combination = _images[indexPath.row]
-            let count = combination.count <= 6 ? combination.count : 6
+        if let _combinations = combinations, let _photos = _combinations[indexPath.row].photos {
+            let count = _photos.count <= 6 ? _photos.count : 6
             for (var i = 0; i < count; i++) {
                 let imgView = cell.viewWithTag(100 + i) as! UIImageView
-                imgView.image = combination[i]
+                imgView.image = _photos[i].photoImage()
             }
             if (count < 6) {
                 for (var i = count; i < 6; i++) {
@@ -73,7 +74,7 @@ public class CombinationTableVC : UITableViewController {
     
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            Database.sharedInstance.deleteCombination(indexPath.row)
+            Database.sharedInstance.deleteCombination(combinations![indexPath.row])
             updateTable()
         }
     }
