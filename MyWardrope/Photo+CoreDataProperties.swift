@@ -16,6 +16,7 @@ import UIKit
 extension Photo {
 
     @NSManaged var photo: NSData
+    @NSManaged var note: String?
     @NSManaged var combinations: [Combination]?
     @NSManaged var subcategory: SubCategory
 

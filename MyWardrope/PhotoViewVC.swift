@@ -16,6 +16,8 @@ public class PhotoViewVC : UIViewController {
     var combination: Combination?
     var deletable = true
     
+    @IBOutlet weak var noteTextView: UITextView!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func btnDelete(sender: AnyObject) {
@@ -35,6 +37,9 @@ public class PhotoViewVC : UIViewController {
         }
         
         imageView.image = photo.photoImage()
+        if let note = photo.note {
+            noteTextView.text = note
+        }
     }
     
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
