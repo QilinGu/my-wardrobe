@@ -22,7 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
             Database.populateDB()
         }
-                
+        
+        let barColor = UIColor(red: 233/255, green: 234/255, blue: 112/255, alpha: 1)
+        let tintColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UITabBar.appearance().barTintColor = barColor
+        UITabBar.appearance().tintColor = tintColor
+        
+        UINavigationBar.appearance().barTintColor = barColor
+        UINavigationBar.appearance().tintColor = tintColor
+        UIButton.appearance().tintColor = tintColor
+        
         return true
     }
 

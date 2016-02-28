@@ -156,7 +156,7 @@ class MyCoreData : DBAPI {
         let object = NSManagedObject(entity: entity!,
             insertIntoManagedObjectContext: managedContext)
         
-        let storedImage = UIImageHelper.resizeImage(photo, newWidth: 300)
+        let storedImage = UIImageHelper.resizeImage(photo, newWidth: 600)
         
 //        object.setValue(subcategory.category, forKey: "category")
         object.setValue(subcategory, forKey: "subcategory")
@@ -266,6 +266,18 @@ class MyCoreData : DBAPI {
             
         } catch let error as NSError {
             print("Could not get combinations \(error), \(error.userInfo)")
+        }
+
+    }
+    
+    func updatePhotoWithNote(photo: Photo, note: String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        photo.note = note
+        do {
+            try managedContext.save()
+        } catch let error as NSError  {
+            print("Could not update photo's note : \(error), \(error.userInfo)")
         }
 
     }

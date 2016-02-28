@@ -12,12 +12,19 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     
     @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var categoryNameTxtField: UITextField!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var iconBtn: UIButton!
+
     var imagePicker = UIImagePickerController()
     var category: Category!
     
+    public override func viewDidLoad() {
+        iconBtn.layer.cornerRadius = 2;
+        iconBtn.layer.borderWidth = 1;
+        iconBtn.layer.borderColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1).CGColor
+    }
+    
     @IBAction func submitNewSubCategory(sender: AnyObject) {
-        Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, icon: imageView.image)
+        Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, icon: iconBtn.imageForState(.Normal))
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -67,8 +74,8 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            self.imageView.image = image
+        self.dismissViewControllerAnimated(false, completion: { () -> Void in
+            self.iconBtn.setImage(image, forState: .Normal)
         })
     }
     

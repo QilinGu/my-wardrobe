@@ -10,7 +10,6 @@
 		794AF0BE1C71FD0200C5E8DB /* NewCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794AF0BD1C71FD0200C5E8DB /* NewCategoryVC.swift */; };
 		8472C2FD1C6F992E00802C6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C2FC1C6F992E00802C6D /* AppDelegate.swift */; };
 		8472C3041C6F992E00802C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3021C6F992E00802C6D /* Main.storyboard */; };
-		8472C3061C6F992E00802C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3051C6F992E00802C6D /* Assets.xcassets */; };
 		8472C3091C6F992E00802C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472C3071C6F992E00802C6D /* LaunchScreen.storyboard */; };
 		8472C3111C6F9B3B00802C6D /* CategoriesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C3101C6F9B3B00802C6D /* CategoriesTableVC.swift */; };
 		8472C3131C6F9B9400802C6D /* DBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472C3121C6F9B9400802C6D /* DBAPI.swift */; };
@@ -31,14 +30,14 @@
 		84F44F171C7A3B3C00580264 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F44F0F1C7A3B3C00580264 /* Category.swift */; };
 		84F44F181C7A3B3C00580264 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F44F101C7A3B3C00580264 /* Photo+CoreDataProperties.swift */; };
 		84F44F191C7A3B3C00580264 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F44F111C7A3B3C00580264 /* Photo.swift */; };
+		84F44F1B1C823FDD00580264 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F44F1A1C823FDD00580264 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		794AF0BD1C71FD0200C5E8DB /* NewCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryVC.swift; sourceTree = "<group>"; };
-		8472C2F91C6F992E00802C6D /* MyWardrope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWardrope.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8472C2F91C6F992E00802C6D /* Wardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8472C2FC1C6F992E00802C6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8472C3031C6F992E00802C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8472C3051C6F992E00802C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8472C3081C6F992E00802C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8472C30A1C6F992E00802C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8472C3101C6F9B3B00802C6D /* CategoriesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableVC.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		84F44F0F1C7A3B3C00580264 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		84F44F101C7A3B3C00580264 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		84F44F111C7A3B3C00580264 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		84F44F1A1C823FDD00580264 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		8472C2FA1C6F992E00802C6D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8472C2F91C6F992E00802C6D /* MyWardrope.app */,
+				8472C2F91C6F992E00802C6D /* Wardrobe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,10 +92,10 @@
 		8472C2FB1C6F992E00802C6D /* MyWardrope */ = {
 			isa = PBXGroup;
 			children = (
+				84F44F1A1C823FDD00580264 /* Assets.xcassets */,
 				8472C31D1C747C4500802C6D /* Helper */,
 				8472C2FC1C6F992E00802C6D /* AppDelegate.swift */,
 				8472C3021C6F992E00802C6D /* Main.storyboard */,
-				8472C3051C6F992E00802C6D /* Assets.xcassets */,
 				8472C3071C6F992E00802C6D /* LaunchScreen.storyboard */,
 				8472C30A1C6F992E00802C6D /* Info.plist */,
 				8472C3171C6F9C0400802C6D /* VC */,
@@ -170,7 +170,7 @@
 			);
 			name = MyWardrope;
 			productName = MyWardrope;
-			productReference = 8472C2F91C6F992E00802C6D /* MyWardrope.app */;
+			productReference = 8472C2F91C6F992E00802C6D /* Wardrobe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -213,7 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8472C3091C6F992E00802C6D /* LaunchScreen.storyboard in Resources */,
-				8472C3061C6F992E00802C6D /* Assets.xcassets in Resources */,
+				84F44F1B1C823FDD00580264 /* Assets.xcassets in Resources */,
 				8472C3041C6F992E00802C6D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,8 +363,8 @@
 				INFOPLIST_FILE = MyWardrope/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nat.mywardrope.MyWardrope;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nat.wardrobe;
+				PRODUCT_NAME = Wardrobe;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -379,8 +379,8 @@
 				INFOPLIST_FILE = MyWardrope/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nat.mywardrope.MyWardrope;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nat.wardrobe;
+				PRODUCT_NAME = Wardrobe;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;

@@ -30,6 +30,7 @@ protocol DBAPI {
     func deletePhotoFromCombination(photo: Photo, combination: Combination) -> Combination
     
     func removeEmptyCombinations()
+    func updatePhotoWithNote(photo: Photo, note: String)
 }
 
 public class Database {
@@ -49,6 +50,7 @@ public class Database {
         sharedInstance.addNewSubCategory(clothes, name: "Leggings", icon: UIImage(named: "Leggings"))
         let tshirt = sharedInstance.addNewSubCategory(clothes, name: "Tshirt", icon: UIImage(named: "Tshirt"))
         sharedInstance.addNewSubCategory(clothes, name: "Blouse", icon: UIImage(named: "Blouse"))
+        sharedInstance.addNewSubCategory(clothes, name: "Pullover", icon: UIImage(named: "Pullover"))
         sharedInstance.addNewSubCategory(clothes, name: "Cardigan", icon: UIImage(named: "Cardigan"))
         sharedInstance.addNewSubCategory(clothes, name: "Jacket", icon: UIImage(named: "Jacket"))
         
