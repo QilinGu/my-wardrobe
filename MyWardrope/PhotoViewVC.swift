@@ -25,6 +25,12 @@ public class PhotoViewVC : UIViewController, UITextViewDelegate {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func btnAction(sender: AnyObject) {
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [photo.photoImage()!], applicationActivities: nil)
+        navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+
+    }
+    
     @IBAction func addNote(sender: AnyObject) {
         addNoteBtn.hidden = true
         noteTextView.becomeFirstResponder()
@@ -32,7 +38,7 @@ public class PhotoViewVC : UIViewController, UITextViewDelegate {
     
     public override func viewDidLoad() {
         if let _ = combination {
-            navigationItem.rightBarButtonItems!.removeFirst()
+            navigationItem.rightBarButtonItems!.removeFirst(2)
         } else {
             navigationItem.rightBarButtonItems!.removeLast()
             if (!deletable) {

@@ -8,20 +8,29 @@
 
 import UIKit
 
-typealias CombinationInfo = (index: Int, images: [UIImage])
-
 public class CombinationViewVC : UITableViewController {
     var combination : Combination!
     
-    private func updateTable() {
+    private func updateScreen() {
         tableView.reloadData()
+        if (combination.photos == nil) || (combination.photos != nil && combination.photos!.count == 0) {
+            navigationItem.rightBarButtonItems!.removeLast()
+        }
     }
     
     @IBAction func btnAllCombination(sender: AnyObject) {
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    @IBAction func btnAdd(sender: AnyObject) {
+    @IBAction func btnAction(sender: AnyObject) {
+        var photos = [UIImage]()
+        for dbPhoto in combination.photos! {
+            if let photo = dbPhoto.photoImage() {
+                photos.append(photo)
+            }
+        }
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: photos, applicationActivities: nil)
+        navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,6 +38,12 @@ public class CombinationViewVC : UITableViewController {
             return photos.count
         }
         return 0
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        if (combination.photos == nil) || (combination.photos != nil && combination.photos!.count == 0) {
+            navigationItem.rightBarButtonItems!.removeLast()
+        }
     }
     
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,8 +64,7 @@ public class CombinationViewVC : UITableViewController {
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             Database.sharedInstance.deletePhotoFromCombination(combination.photos![indexPath.row], combination: combination)
-//            combination.photos!.removeAtIndex(indexPath.row)
-            updateTable()
+            updateScreen()
         }
     }
     

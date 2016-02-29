@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -149,12 +149,18 @@
                                 <action selector="btnAllCombination:" destination="e8B-aW-TbP" id="F9c-vY-CgZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="O0H-xu-92R">
-                            <connections>
-                                <action selector="btnAdd:" destination="e8B-aW-TbP" id="G2T-lF-8A9"/>
-                                <segue destination="qiv-aS-Tdn" kind="show" identifier="AddToCollection" id="qHq-Vy-ldQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="O0H-xu-92R">
+                                <connections>
+                                    <segue destination="qiv-aS-Tdn" kind="show" identifier="AddToCollection" id="qHq-Vy-ldQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="FTw-z2-122">
+                                <connections>
+                                    <action selector="btnAction:" destination="e8B-aW-TbP" id="t5B-Za-ROO"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -531,6 +537,11 @@
                                     <action selector="btnDelete:" destination="vQO-96-ooo" id="WZS-jy-nGe"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="action" id="MwJ-AV-ZOa">
+                                <connections>
+                                    <action selector="btnAction:" destination="vQO-96-ooo" id="x9P-QC-XMN"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Select" id="JAp-3v-CrV">
                                 <connections>
                                     <segue destination="e8B-aW-TbP" kind="show" identifier="AddToCombinaton" id="AcM-Lj-OMp"/>
@@ -560,7 +571,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSJ-Cv-tO8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSJ-Cv-tO8">
                                 <rect key="frame" x="43" y="178" width="514" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="haW-jR-IZG"/>
@@ -571,7 +582,7 @@
                                     <action selector="editSubCatName:" destination="5be-Cd-Swy" eventType="editingChanged" id="Pgw-9T-xR7"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-Yy-mi9">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-Yy-mi9">
                                 <rect key="frame" x="259" y="122" width="82" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Rln-dO-htx"/>
@@ -583,7 +594,7 @@
                                     <action selector="submitNewSubCategory:" destination="5be-Cd-Swy" eventType="touchUpInside" id="7OB-0n-Chp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9J-8u-Lfi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9J-8u-Lfi">
                                 <rect key="frame" x="200" y="262" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Bx5-wL-7ru"/>
@@ -634,8 +645,8 @@
         <image name="TagSelectedIcon" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="qHq-Vy-ldQ"/>
         <segue reference="AcM-Lj-OMp"/>
-        <segue reference="SJ3-gt-GfL"/>
-        <segue reference="FfX-08-Czv"/>
+        <segue reference="hI1-Kb-3de"/>
     </inferredMetricsTieBreakers>
 </document>
