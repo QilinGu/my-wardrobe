@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jpl-hd-pi8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -115,7 +115,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="320" id="djA-fw-D3v">
-                                <rect key="frame" x="0.0" y="92" width="600" height="320"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="djA-fw-D3v" id="PWO-1y-v80">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
@@ -195,7 +195,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCellCaterogy" textLabel="jYl-NH-A7z" detailTextLabel="wU7-J2-d9n" style="IBUITableViewCellStyleValue1" id="VkB-TY-cjQ">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="VkB-TY-cjQ" id="ZWZ-v5-4VM">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -252,7 +252,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjb-Z7-qhl">
-                                <rect key="frame" x="43" y="178" width="514" height="30"/>
+                                <rect key="frame" x="43" y="134" width="514" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="EPq-Uq-A37"/>
                                 </constraints>
@@ -263,7 +263,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47M-QC-Ek2">
-                                <rect key="frame" x="262" y="122" width="77" height="36"/>
+                                <rect key="frame" x="262" y="78" width="77" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="77" id="Ex7-sO-qnV"/>
                                     <constraint firstAttribute="height" constant="36" id="XPi-SX-UKP"/>
@@ -275,7 +275,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qP7-7z-Z2y">
-                                <rect key="frame" x="200" y="262" width="200" height="200"/>
+                                <rect key="frame" x="200" y="218" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="gBa-Sv-IwP"/>
                                     <constraint firstAttribute="height" constant="200" id="iNF-6x-pQQ"/>
@@ -374,7 +374,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCellSubCaterogy" textLabel="gtN-sV-mxB" detailTextLabel="pOD-TH-cmM" style="IBUITableViewCellStyleValue1" id="QI8-nO-8V0">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QI8-nO-8V0" id="4YQ-DH-PHc">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -434,7 +434,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="rn6-bB-0Tu">
-                                <rect key="frame" x="0.0" y="64" width="105" height="105"/>
+                                <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
@@ -496,13 +496,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jtu-FW-VvU">
-                                <rect key="frame" x="150" y="108" width="300" height="300"/>
+                                <rect key="frame" x="150" y="64" width="300" height="388"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="e3C-9D-aaN"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4Rm-eo-xwE">
-                                <rect key="frame" x="20" y="438" width="560" height="86"/>
+                                <rect key="frame" x="20" y="482" width="560" height="86"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="HJm-BH-LlO"/>
@@ -511,7 +511,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kx4-x7-06h">
-                                <rect key="frame" x="248" y="456" width="104" height="30"/>
+                                <rect key="frame" x="248" y="500" width="104" height="30"/>
                                 <state key="normal" title="Add some note"/>
                                 <connections>
                                     <action selector="addNote:" destination="vQO-96-ooo" eventType="touchUpInside" id="5bq-wT-7f6"/>
@@ -572,7 +572,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sub category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSJ-Cv-tO8">
-                                <rect key="frame" x="43" y="178" width="514" height="30"/>
+                                <rect key="frame" x="43" y="134" width="514" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="haW-jR-IZG"/>
                                 </constraints>
@@ -583,7 +583,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-Yy-mi9">
-                                <rect key="frame" x="259" y="122" width="82" height="36"/>
+                                <rect key="frame" x="259" y="78" width="82" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Rln-dO-htx"/>
                                     <constraint firstAttribute="width" constant="82" id="VBm-Pj-QZB"/>
@@ -595,7 +595,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9J-8u-Lfi">
-                                <rect key="frame" x="200" y="262" width="200" height="200"/>
+                                <rect key="frame" x="200" y="218" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Bx5-wL-7ru"/>
                                     <constraint firstAttribute="width" constant="200" id="b14-QK-lq2"/>

@@ -65,6 +65,7 @@ public class Database {
         sharedInstance.addNewSubCategory(jewelry, name: "Earrings", icon: UIImage(named: "Earrings"))
         sharedInstance.addNewSubCategory(jewelry, name: "Bracelet", icon: UIImage(named: "Bracelet"))
         sharedInstance.addNewSubCategory(jewelry, name: "Necklace", icon: UIImage(named: "Necklace"))
+        sharedInstance.addNewSubCategory(jewelry, name: "Watch", icon: UIImage(named: "Watch"))
         
         // accessories
         sharedInstance.addNewSubCategory(accessories, name: "Belt", icon: UIImage(named: "Belt"))
