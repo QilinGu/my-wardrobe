@@ -9,33 +9,46 @@
 import UIKit
 
 public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var iconBtn: UIButton!
     @IBOutlet weak var categoryNameTxtField: UITextField!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
 
     var imagePicker = UIImagePickerController()
+    var caterogy: Category?
+    var selectedIcon: UIImage? = nil
     
     public override func viewDidLoad() {
-        iconBtn.layer.cornerRadius = 2;
-        iconBtn.layer.borderWidth = 1;
-        iconBtn.layer.borderColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1).CGColor
+        if let cat = caterogy {
+            title = NSLocalizedString("Edit category", comment:"")
+            categoryNameTxtField.text = cat.name
+            if let icon = cat.iconImage() {
+                iconBtn.setImage(icon, forState: .Normal)
+            }
+            saveBarButton.enabled = true
+        } else {
+            title = NSLocalizedString("New category", comment:"")
+            saveBarButton.enabled = false
+        }
+        categoryNameTxtField.delegate = MyTextFieldDelegate.sharedInstance
     }
     
     @IBAction func editCategoryName(sender: UITextField) {
         if let textEntered = categoryNameTxtField.text where !textEntered.isEmpty {
-            submitBtn.enabled = true
+            saveBarButton.enabled = true
         } else {
-            submitBtn.enabled = false
+            saveBarButton.enabled = false
         }
     }
     
-    @IBAction func submitNewCategory(sender: AnyObject) {
-        Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, icon: self.iconBtn.imageForState(.Normal))
+    @IBAction func onSave(sender: AnyObject) {
+        if let cat = caterogy {
+            Database.sharedInstance.updateCategory(cat, name: categoryNameTxtField.text!, icon: self.selectedIcon)
+        } else {
+            Database.sharedInstance.addNewCategory(categoryNameTxtField.text!, icon: self.selectedIcon)
+        }
+        
         navigationController?.popViewControllerAnimated(true)
-    }
-    
-    @IBAction func onCancel(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+
     }
     
     @IBAction func addImage(sender: AnyObject) {
@@ -76,6 +89,7 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(false, completion: { () -> Void in
+            self.selectedIcon = image
             self.iconBtn.setImage(image, forState: .Normal)
         })
     }

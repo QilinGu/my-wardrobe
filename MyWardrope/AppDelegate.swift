@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+public let AppGreenColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1)
+public let AppYellowColor = UIColor(red: 233/255, green: 234/255, blue: 112/255, alpha: 1)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,15 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Database.populateDB()
         }
         
-        let barColor = UIColor(red: 233/255, green: 234/255, blue: 112/255, alpha: 1)
-        let tintColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        UITabBar.appearance().barTintColor = barColor
-        UITabBar.appearance().tintColor = tintColor
+        UITabBar.appearance().barTintColor = AppYellowColor
+        UITabBar.appearance().tintColor = AppGreenColor
         
-        UINavigationBar.appearance().barTintColor = barColor
-        UINavigationBar.appearance().tintColor = tintColor
-        UIButton.appearance().tintColor = tintColor
+        UINavigationBar.appearance().barTintColor = AppYellowColor
+        UINavigationBar.appearance().tintColor = AppGreenColor
+        UIButton.appearance().tintColor = AppGreenColor
         
         return true
     }
@@ -79,7 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            let mOptions = [NSMigratePersistentStoresAutomaticallyOption: true,
+                NSInferMappingModelAutomaticallyOption: true]
+            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: mOptions)
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()

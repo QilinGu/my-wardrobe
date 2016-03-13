@@ -11,22 +11,24 @@ import CoreData
 
 typealias PhotoInfo = (category: String, subcategory: String, imageIndex: Int, image: UIImage)
 
-public class PhotoViewVC : UIViewController, UITextViewDelegate {
-    var photo: Photo!
+public class PhotoViewVC : UIViewController, UITextViewDelegate, UITextFieldDelegate {
+    var photosToBrowse: [Photo]!
+    var photoId: Int = 0
     var combination: Combination?
     var deletable = true
     
     @IBOutlet weak var addNoteBtn: UIButton!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tagsTextField: UITextField!
     
     @IBAction func btnDelete(sender: AnyObject) {
-        Database.sharedInstance.deletePhoto(photo)
+        Database.sharedInstance.deletePhoto(photosToBrowse[photoId])
         navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func btnAction(sender: AnyObject) {
-        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [photo.photoImage()!], applicationActivities: nil)
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [photosToBrowse[photoId].photoImage()!], applicationActivities: nil)
         navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 
     }
@@ -46,15 +48,70 @@ public class PhotoViewVC : UIViewController, UITextViewDelegate {
             }
         }
         
-        imageView.image = photo.photoImage()
-        if let note = photo.note {
+        displayContent()
+        noteTextView.delegate = self
+        tagsTextField.delegate = self
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func displayContent() {
+        imageView.image = photosToBrowse[photoId].photoImage()
+        tagsTextField.text = photosToBrowse[photoId].tags
+        if let note = photosToBrowse[photoId].note where !note.isEmpty {
             noteTextView.text = note
             addNoteBtn.hidden = true
         } else {
+            noteTextView.text = nil
             addNoteBtn.hidden = false
         }
+    }
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
-        noteTextView.delegate = self
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Right:
+                if (photoId > 0) {
+                    photoId--
+                    displayContent()
+                }
+                break
+            case UISwipeGestureRecognizerDirection.Left:
+                if (photoId < photosToBrowse.count - 1) {
+                    photoId++
+                    displayContent()
+                }
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if(string == "\n") {
+            textField.resignFirstResponder()
+            return false
+        }
+        if (textField.text!.characters.count - range.length + string.characters.count > 125) {
+            return false
+        }
+        return true
+    }
+    
+    public func textFieldDidEndEditing(textField: UITextField) {
+        if (textField.text != photosToBrowse[photoId].tags) {
+            Database.sharedInstance.updatePhoto(photosToBrowse[photoId], note: photosToBrowse[photoId].note, tags: textField.text)
+        }
     }
     
     public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -69,16 +126,19 @@ public class PhotoViewVC : UIViewController, UITextViewDelegate {
     }
     
     public func textViewDidBeginEditing(textView: UITextView) {
+        addNoteBtn.hidden = true
         animateTextView(textView, up: true)
     }
     
     public func textViewDidEndEditing(textView: UITextView) {
         animateTextView(textView, up: false)
-        if (textView.text != photo.note) {
-            Database.sharedInstance.updatePhotoWithNote(photo, note: textView.text)
+        if (textView.text != photosToBrowse[photoId].note) {
+            Database.sharedInstance.updatePhoto(photosToBrowse[photoId], note: textView.text, tags: photosToBrowse[photoId].tags)
         }
         if (textView.text.isEmpty) {
             addNoteBtn.hidden = false
+        } else {
+            addNoteBtn.hidden = true
         }
     }
     
@@ -98,7 +158,7 @@ public class PhotoViewVC : UIViewController, UITextViewDelegate {
     
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "AddToCombinaton") {
-            combination = Database.sharedInstance.addPhotoToCombination(photo, combination: combination!)
+            combination = Database.sharedInstance.addPhotoToCombination(photosToBrowse[photoId], combination: combination!)
             let nextVC = segue.destinationViewController as! CombinationViewVC
             nextVC.combination = combination!
         }

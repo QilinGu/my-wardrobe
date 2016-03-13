@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="icon" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="subcategories" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
+    </entity>
+    <entity name="Combination" representedClassName=".Combination" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Photo" inverseName="combinations" inverseEntity="Photo" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName=".Photo" syncable="YES">
+        <attribute name="note" optional="YES" attributeType="String" maxValueString="125" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="combinations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Combination" inverseName="photos" inverseEntity="Combination" syncable="YES"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="photos" inverseEntity="SubCategory" syncable="YES"/>
+    </entity>
+    <entity name="SubCategory" representedClassName=".SubCategory" syncable="YES">
+        <attribute name="icon" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subcategories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Photo" inverseName="subcategory" inverseEntity="Photo" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-252" positionY="-189" width="128" height="88"/>
+        <element name="Combination" positionX="-252" positionY="-9" width="128" height="73"/>
+        <element name="Photo" positionX="-9" positionY="-7" width="128" height="120"/>
+        <element name="SubCategory" positionX="7" positionY="-189" width="128" height="103"/>
+    </elements>
+</model>

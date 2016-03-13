@@ -22,6 +22,8 @@ public class SubCategoryTableVC : UITableViewController {
         }
 
         self.title = category.name
+        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -61,6 +63,23 @@ public class SubCategoryTableVC : UITableViewController {
         return cell
     }
     
+    public override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let edit = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Edit", comment: "")) { action, index in
+            self.performSegueWithIdentifier("AddNewSubCategory", sender: indexPath)
+        }
+        edit.backgroundColor = AppGreenColor
+        
+        let delete = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Delete", comment: "")) { action, index in
+            Database.sharedInstance.deleteSubCategory(self.category.subcategories![indexPath.row])
+//            self.categories!.removeAtIndex(indexPath.row)
+            self.updateTable()
+        }
+        delete.backgroundColor = UIColor.redColor()
+        
+        return [delete, edit]
+    }
+    
     public override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
@@ -81,6 +100,9 @@ public class SubCategoryTableVC : UITableViewController {
         } else if (segue.identifier == "AddNewSubCategory") {
             let nextvc = segue.destinationViewController as! NewSubCategoryVC
             nextvc.category = category
+            if let row = (sender as? NSIndexPath)?.row {
+                nextvc.subCaterogy = category.subcategories![row]
+            }
         }
 
     }

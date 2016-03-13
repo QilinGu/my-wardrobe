@@ -44,10 +44,6 @@ class MyCoreData : DBAPI {
         do {
             let results = try managedContext.executeFetchRequest(fetchRequest)
             if let _results = results as? [Category] {
-//                var categories = [CategoryObject]()
-//                for result in _results {
-//                    categories.append(CategoryObject(managedObject: result))
-//                }
                 return _results
             }
 
@@ -87,64 +83,8 @@ class MyCoreData : DBAPI {
         return nil
     }
     
-    func getSubCategoriesList(category: Category) -> [SubCategory]? {
-        return category.subcategories
-        
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "SubCategory")
-//        let predicate = NSPredicate(format: "category == %@", category.name)
-//        fetchRequest.predicate = predicate
-//        
-//        do {
-//            let results = try managedContext.executeFetchRequest(fetchRequest)
-//            if let _results = results as? [NSManagedObject] {
-//                var subcategories = [SubCategoryObject]()
-//                for result in _results {
-//                    subcategories.append(SubCategoryObject(managedObject: result))
-//                }
-//                return subcategories
-//            }
-//        } catch let error as NSError {
-//            print("Could not get subcategories \(error), \(error.userInfo)")
-//        }
-//        
-//        return nil
-
-    }
-    
     func deleteSubCategory(subcategory: SubCategory) {
         deleteObject(subcategory)
-    }
-    
-    func getPhotosFromSubCategory(subcategory: SubCategory) -> [Photo]? {
-        
-        return subcategory.photos
-        
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "Photo")
-//        let predicate1 = NSPredicate(format: "category == %@", subcategory.category)
-//        let predicate2 = NSPredicate(format: "subcategory == %@", subcategory.name)
-//        let predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [predicate1, predicate2])
-//        fetchRequest.predicate = predicate
-//        
-//        do {
-//            let results = try managedContext.executeFetchRequest(fetchRequest)
-//            if let _results = results as? [NSManagedObject] {
-//                var photos = [PhotoObject]()
-//                for result in _results {
-//                    photos.append(PhotoObject(managedObject: result))
-//                }
-//                return photos
-//            }
-//        } catch let error as NSError {
-//            print("Could not get photos for subcategory \(error), \(error.userInfo)")
-//        }
-//        
-//        return nil
     }
     
     func addPhotoToSubCategory(subcategory: SubCategory, photo: UIImage) -> Photo? {
@@ -158,7 +98,6 @@ class MyCoreData : DBAPI {
         
         let storedImage = UIImageHelper.resizeImage(photo, newWidth: 600)
         
-//        object.setValue(subcategory.category, forKey: "category")
         object.setValue(subcategory, forKey: "subcategory")
         object.setValue(UIImageJPEGRepresentation(storedImage, 1), forKey: "photo")
         
@@ -270,16 +209,49 @@ class MyCoreData : DBAPI {
 
     }
     
-    func updatePhotoWithNote(photo: Photo, note: String) {
+    func updatePhoto(photo: Photo, note: String?, tags: String?) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         photo.note = note
+        photo.tags = tags
         do {
             try managedContext.save()
         } catch let error as NSError  {
             print("Could not update photo's note : \(error), \(error.userInfo)")
         }
 
+    }
+    
+    func updateCategory(category: Category, name: String, icon: UIImage?) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        category.name = name
+        if let _icon = icon {
+            let storedImage = UIImageHelper.resizeImage(_icon, newWidth: 64, newHeight: 64)
+            category.icon = UIImageJPEGRepresentation(storedImage, 1)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError  {
+            print("Could not update category : \(error), \(error.userInfo)")
+        }
+    }
+    
+    func updateSubCategory(subCategory: SubCategory, name: String, icon: UIImage?) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        subCategory.name = name
+        if let _icon = icon {
+            let storedImage = UIImageHelper.resizeImage(_icon, newWidth: 64, newHeight: 64)
+            subCategory.icon = UIImageJPEGRepresentation(storedImage, 1)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError  {
+            print("Could not update category : \(error), \(error.userInfo)")
+        }
     }
     
     private func deleteObject(object: NSManagedObject) {

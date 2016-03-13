@@ -13,8 +13,6 @@ import CoreData
 
 protocol DBAPI {
     func getCategoriesList() -> [Category]?
-    func getSubCategoriesList(category: Category) -> [SubCategory]?
-    func getPhotosFromSubCategory(subcategory: SubCategory) -> [Photo]?
     func getCombinations() -> [Combination]?
     
     func addNewCategory(name: String, icon: UIImage?) -> Category?
@@ -30,7 +28,9 @@ protocol DBAPI {
     func deletePhotoFromCombination(photo: Photo, combination: Combination) -> Combination
     
     func removeEmptyCombinations()
-    func updatePhotoWithNote(photo: Photo, note: String)
+    func updatePhoto(photo: Photo, note: String?, tags: String?)
+    func updateCategory(category: Category, name: String, icon: UIImage?)
+    func updateSubCategory(subCategory: SubCategory, name: String, icon: UIImage?)
 }
 
 public class Database {

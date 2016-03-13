@@ -21,6 +21,7 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
         }
         
         self.title = subcategory.name
+        collectionView?.backgroundView = UIImageView(image: UIImage(named: "Background"))
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -52,7 +53,9 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
         if (segue.identifier == "ShowPhoto") {
             let nextvc = segue.destinationViewController as! PhotoViewVC
             let index = (collectionView?.indexPathsForSelectedItems()?.first?.row)!
-            nextvc.photo = subcategory.photos![index]
+//            nextvc.photo = subcategory.photos![index]
+            nextvc.photosToBrowse = subcategory.photos!
+            nextvc.photoId = index
             nextvc.combination = combination
         }
     }

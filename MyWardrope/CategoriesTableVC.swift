@@ -20,6 +20,7 @@ public class CategoriesTableVC : UITableViewController {
             navigationItem.rightBarButtonItem = nil
         }
         
+        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -66,16 +67,28 @@ public class CategoriesTableVC : UITableViewController {
         return cell
     }
     
+    public override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let edit = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Edit", comment: "")) { action, index in
+            self.performSegueWithIdentifier("AddNewCategory", sender: indexPath)
+        }
+        edit.backgroundColor = AppGreenColor
+        
+        let delete = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Delete", comment: "")) { action, index in
+            Database.sharedInstance.deleteCategory(self.categories![indexPath.row])
+            self.categories!.removeAtIndex(indexPath.row)
+            self.updateTable()
+        }
+        delete.backgroundColor = UIColor.redColor()
+        
+        return [delete, edit]
+    }
+    
     public override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
     public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            Database.sharedInstance.deleteCategory(categories![indexPath.row])
-            categories!.removeAtIndex(indexPath.row)
-            updateTable()
-        }
     }
     
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,6 +97,11 @@ public class CategoriesTableVC : UITableViewController {
             nextvc.category = categories![(tableView.indexPathForSelectedRow?.row)!]
             nextvc.combination = combination
             
+        } else if (segue.identifier == "AddNewCategory" && sender is NSIndexPath) {
+            if let row = sender?.row {
+                let nextvc = segue.destinationViewController as! NewCategoryVC
+                nextvc.caterogy = categories![row]
+            }
         }
     }
 }

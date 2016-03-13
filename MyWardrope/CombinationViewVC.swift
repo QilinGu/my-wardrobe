@@ -11,6 +11,10 @@ import UIKit
 public class CombinationViewVC : UITableViewController {
     var combination : Combination!
     
+    public override func viewDidLoad() {
+        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
+    }
+    
     private func updateScreen() {
         tableView.reloadData()
         if (combination.photos == nil) || (combination.photos != nil && combination.photos!.count == 0) {
@@ -74,7 +78,9 @@ public class CombinationViewVC : UITableViewController {
             nextvc.combination = combination
         } else if (segue.identifier == "ShowPhoto") {
             let nextvc = segue.destinationViewController as! PhotoViewVC
-            nextvc.photo = combination.photos![(tableView.indexPathForSelectedRow?.row)!]
+//            nextvc.photo = combination.photos![(tableView.indexPathForSelectedRow?.row)!]
+            nextvc.photosToBrowse = combination.photos!
+            nextvc.photoId = tableView.indexPathForSelectedRow!.row
             nextvc.deletable = false
         }
     }

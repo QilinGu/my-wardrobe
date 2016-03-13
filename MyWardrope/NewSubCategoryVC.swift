@@ -10,29 +10,35 @@ import UIKit
 
 public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var categoryNameTxtField: UITextField!
     @IBOutlet weak var iconBtn: UIButton!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
 
     var imagePicker = UIImagePickerController()
     var category: Category!
+    var subCaterogy: SubCategory?
+    var selectedIcon: UIImage? = nil
     
     public override func viewDidLoad() {
-        iconBtn.layer.cornerRadius = 2;
-        iconBtn.layer.borderWidth = 1;
-        iconBtn.layer.borderColor = UIColor(red: 0, green: 128/255, blue: 64/255, alpha: 1).CGColor
-    }
-    
-    @IBAction func submitNewSubCategory(sender: AnyObject) {
-        Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, icon: iconBtn.imageForState(.Normal))
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    @IBAction func editSubCatName(sender: AnyObject) {
-        if let textEntered = categoryNameTxtField.text where !textEntered.isEmpty {
-            submitBtn.enabled = true
+        if let subcat = subCaterogy {
+            title = NSLocalizedString("Edit sub category", comment:"")
+            categoryNameTxtField.text = subcat.name
+            if let icon = subcat.iconImage() {
+                iconBtn.setImage(icon, forState: .Normal)
+            }
+            saveBarButton.enabled = true
         } else {
-            submitBtn.enabled = false
+            title = NSLocalizedString("New sub category", comment:"")
+            saveBarButton.enabled = false
+        }
+        categoryNameTxtField.delegate = MyTextFieldDelegate.sharedInstance
+    }
+    
+    @IBAction func editCategoryName(sender: AnyObject) {
+        if let textEntered = categoryNameTxtField.text where !textEntered.isEmpty {
+            saveBarButton.enabled = true
+        } else {
+            saveBarButton.enabled = false
         }
 
     }
@@ -75,12 +81,18 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(false, completion: { () -> Void in
+            self.selectedIcon = image
             self.iconBtn.setImage(image, forState: .Normal)
         })
     }
     
-    @IBAction func onCancel(sender: AnyObject) {
+    @IBAction func onSave(sender: AnyObject) {
+        if let subcat = subCaterogy {
+            Database.sharedInstance.updateSubCategory(subcat, name: categoryNameTxtField.text!, icon: selectedIcon)
+        } else {
+            Database.sharedInstance.addNewSubCategory(category, name:  categoryNameTxtField.text!, icon: selectedIcon)
+        }
+        
         navigationController?.popViewControllerAnimated(true)
-
     }
 }
