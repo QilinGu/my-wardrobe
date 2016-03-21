@@ -26,4 +26,8 @@ extension SubCategory {
         }
         return nil
     }
+ 
+    func translatedName() -> String {
+        return NSLocalizedString(self.name, comment: "")
+    }
 }

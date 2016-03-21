@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="MyWardrope/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.1.1" build-num="7B1005"/>
+    </header>
+    <body/>
+  </file>
+  <file original="MyWardrope/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.1.1" build-num="7B1005"/>
+    </header>
+    <body>
+      <trans-unit id="AXl-zR-MRY.title">
+        <source>New category</source>
+        <note>Class = "UINavigationItem"; title = "New category"; ObjectID = "AXl-zR-MRY";</note>
+      </trans-unit>
+      <trans-unit id="Ad3-hg-h3b.title">
+        <source>New sub category</source>
+        <note>Class = "UIViewController"; title = "New sub category"; ObjectID = "Ad3-hg-h3b";</note>
+      </trans-unit>
+      <trans-unit id="Ecc-vH-rA4.title">
+        <source>New category</source>
+        <note>Class = "UINavigationItem"; title = "New category"; ObjectID = "Ecc-vH-rA4";</note>
+      </trans-unit>
+      <trans-unit id="FsH-re-fxx.title">
+        <source>Sub category</source>
+        <note>Class = "UITableViewController"; title = "Sub category"; ObjectID = "FsH-re-fxx";</note>
+      </trans-unit>
+      <trans-unit id="JAp-3v-CrV.title">
+        <source>Select</source>
+        <note>Class = "UIBarButtonItem"; title = "Select"; ObjectID = "JAp-3v-CrV";</note>
+      </trans-unit>
+      <trans-unit id="NbD-MY-B6A.title">
+        <source>All</source>
+        <note>Class = "UIBarButtonItem"; title = "All"; ObjectID = "NbD-MY-B6A";</note>
+      </trans-unit>
+      <trans-unit id="WBg-UX-fSF.placeholder">
+        <source>tags</source>
+        <note>Class = "UITextField"; placeholder = "tags"; ObjectID = "WBg-UX-fSF";</note>
+      </trans-unit>
+      <trans-unit id="caQ-B3-Ont.title">
+        <source>Combinations</source>
+        <note>Class = "UINavigationItem"; title = "Combinations"; ObjectID = "caQ-B3-Ont";</note>
+      </trans-unit>
+      <trans-unit id="dpv-Yp-1vX.title">
+        <source>Your combination</source>
+        <note>Class = "UINavigationItem"; title = "Your combination"; ObjectID = "dpv-Yp-1vX";</note>
+      </trans-unit>
+      <trans-unit id="gcB-4P-N1O.title">
+        <source>Wardrobe</source>
+        <note>Class = "UINavigationItem"; title = "Wardrobe"; ObjectID = "gcB-4P-N1O";</note>
+      </trans-unit>
+      <trans-unit id="gtN-sV-mxB.text">
+        <source>Title</source>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "gtN-sV-mxB";</note>
+      </trans-unit>
+      <trans-unit id="gum-5F-udN.title">
+        <source>Combinations</source>
+        <note>Class = "UITabBarItem"; title = "Combinations"; ObjectID = "gum-5F-udN";</note>
+      </trans-unit>
+      <trans-unit id="iNd-ch-9B6.title">
+        <source>Wardrobe</source>
+        <note>Class = "UITabBarItem"; title = "Wardrobe"; ObjectID = "iNd-ch-9B6";</note>
+      </trans-unit>
+      <trans-unit id="jYl-NH-A7z.text">
+        <source>Title</source>
+        <note>Class = "UILabel"; text = "Title"; ObjectID = "jYl-NH-A7z";</note>
+      </trans-unit>
+      <trans-unit id="kx4-x7-06h.normalTitle">
+        <source>Add some note</source>
+        <note>Class = "UIButton"; normalTitle = "Add some note"; ObjectID = "kx4-x7-06h";</note>
+      </trans-unit>
+      <trans-unit id="pOD-TH-cmM.text">
+        <source>Detail</source>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "pOD-TH-cmM";</note>
+      </trans-unit>
+      <trans-unit id="qiv-aS-Tdn.title">
+        <source>My wardrope</source>
+        <note>Class = "UITableViewController"; title = "My wardrope"; ObjectID = "qiv-aS-Tdn";</note>
+      </trans-unit>
+      <trans-unit id="wU7-J2-d9n.text">
+        <source>Detail</source>
+        <note>Class = "UILabel"; text = "Detail"; ObjectID = "wU7-J2-d9n";</note>
+      </trans-unit>
+      <trans-unit id="xjb-Z7-qhl.placeholder">
+        <source>Category name</source>
+        <note>Class = "UITextField"; placeholder = "Category name"; ObjectID = "xjb-Z7-qhl";</note>
+      </trans-unit>
+      <trans-unit id="yuY-BL-q2A.placeholder">
+        <source>Category name</source>
+        <note>Class = "UITextField"; placeholder = "Category name"; ObjectID = "yuY-BL-q2A";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="MyWardrope/Info.plist" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.1.1" build-num="7B1005"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>2.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="MyWardrope/Localizable.strings" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.1.1" build-num="7B1005"/>
+    </header>
+    <body>
+      <trans-unit id="Add icon to category">
+        <source>Add icon to category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add icon to sub category">
+        <source>Add icon to sub category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Choose from photo library">
+        <source>Choose from photo library</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete">
+        <source>Delete</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Dismiss">
+        <source>Dismiss</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit">
+        <source>Edit</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit category">
+        <source>Edit category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit sub category">
+        <source>Edit sub category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New category">
+        <source>New category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New sub category">
+        <source>New sub category</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Search by tag">
+        <source>Search by tag</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Take a photo">
+        <source>Take a photo</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

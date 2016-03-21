@@ -1,0 +1,60 @@
+
+/* Class = "UINavigationItem"; title = "New category"; ObjectID = "AXl-zR-MRY"; */
+"AXl-zR-MRY.title" = "Nouvelle catégorie";
+
+/* Class = "UIViewController"; title = "New sub category"; ObjectID = "Ad3-hg-h3b"; */
+"Ad3-hg-h3b.title" = "Nouvelle sous-catégorie";
+
+/* Class = "UINavigationItem"; title = "New category"; ObjectID = "Ecc-vH-rA4"; */
+"Ecc-vH-rA4.title" = "Nouvelle catégorie";
+
+/* Class = "UITableViewController"; title = "Sub category"; ObjectID = "FsH-re-fxx"; */
+"FsH-re-fxx.title" = "Sous-catégorie";
+
+/* Class = "UIBarButtonItem"; title = "Select"; ObjectID = "JAp-3v-CrV"; */
+"JAp-3v-CrV.title" = "Sélectionner";
+
+/* Class = "UIBarButtonItem"; title = "All"; ObjectID = "NbD-MY-B6A"; */
+"NbD-MY-B6A.title" = "Tous";
+
+/* Class = "UITextField"; placeholder = "tags"; ObjectID = "WBg-UX-fSF"; */
+"WBg-UX-fSF.placeholder" = "Étiquettes";
+
+/* Class = "UINavigationItem"; title = "Combinations"; ObjectID = "caQ-B3-Ont"; */
+"caQ-B3-Ont.title" = "Combinaisons";
+
+/* Class = "UINavigationItem"; title = "Your combination"; ObjectID = "dpv-Yp-1vX"; */
+"dpv-Yp-1vX.title" = "Votre combinaison";
+
+/* Class = "UINavigationItem"; title = "Wardrobe"; ObjectID = "gcB-4P-N1O"; */
+"gcB-4P-N1O.title" = "Garde-robe";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "gtN-sV-mxB"; */
+"gtN-sV-mxB.text" = "Titre";
+
+/* Class = "UITabBarItem"; title = "Combinations"; ObjectID = "gum-5F-udN"; */
+"gum-5F-udN.title" = "Combinaisons";
+
+/* Class = "UITabBarItem"; title = "Wardrobe"; ObjectID = "iNd-ch-9B6"; */
+"iNd-ch-9B6.title" = "Garde-robe";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jYl-NH-A7z"; */
+"jYl-NH-A7z.text" = "Titre";
+
+/* Class = "UIButton"; normalTitle = "Add some note"; ObjectID = "kx4-x7-06h"; */
+"kx4-x7-06h.normalTitle" = "Ajouter une note";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "pOD-TH-cmM"; */
+"pOD-TH-cmM.text" = "Détail";
+
+/* Class = "UITableViewController"; title = "My wardrope"; ObjectID = "qiv-aS-Tdn"; */
+"qiv-aS-Tdn.title" = "Ma garde-robe";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "wU7-J2-d9n"; */
+"wU7-J2-d9n.text" = "Détail";
+
+/* Class = "UITextField"; placeholder = "Category name"; ObjectID = "xjb-Z7-qhl"; */
+"xjb-Z7-qhl.placeholder" = "Nom de catégorie";
+
+/* Class = "UITextField"; placeholder = "Category name"; ObjectID = "yuY-BL-q2A"; */
+"yuY-BL-q2A.placeholder" = "Nom de sous-catégorie";

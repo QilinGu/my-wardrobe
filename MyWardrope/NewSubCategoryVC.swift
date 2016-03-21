@@ -22,7 +22,7 @@ public class NewSubCategoryVC : UIViewController, UINavigationControllerDelegate
     public override func viewDidLoad() {
         if let subcat = subCaterogy {
             title = NSLocalizedString("Edit sub category", comment:"")
-            categoryNameTxtField.text = subcat.name
+            categoryNameTxtField.text = subcat.translatedName()
             if let icon = subcat.iconImage() {
                 iconBtn.setImage(icon, forState: .Normal)
             }

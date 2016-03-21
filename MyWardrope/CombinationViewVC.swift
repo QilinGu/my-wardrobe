@@ -11,9 +11,9 @@ import UIKit
 public class CombinationViewVC : UITableViewController {
     var combination : Combination!
     
-    public override func viewDidLoad() {
-        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
-    }
+//    public override func viewDidLoad() {
+//        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
+//    }
     
     private func updateScreen() {
         tableView.reloadData()

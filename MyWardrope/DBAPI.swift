@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-//public typealias Category = (name: String, image: UIImage?)
-
 protocol DBAPI {
     func getCategoriesList() -> [Category]?
     func getCombinations() -> [Combination]?

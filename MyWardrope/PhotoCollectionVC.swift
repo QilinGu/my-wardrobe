@@ -14,14 +14,25 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
     var imagePicker = UIImagePickerController()
     var subcategory: SubCategory!
     var combination: Combination?
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredPhotos = [Photo]()
+    var addedSearchBar = false
     
     public override func viewDidLoad() {
         if let _ = combination {
             navigationItem.rightBarButtonItem = nil
         }
         
-        self.title = subcategory.name
-        collectionView?.backgroundView = UIImageView(image: UIImage(named: "Background"))
+        self.title = subcategory.translatedName()
+//        collectionView?.backgroundView = UIImageView(image: UIImage(named: "Background"))
+        
+//        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search by tag", comment: "")
+        definesPresentationContext = true
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -29,12 +40,61 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
     }
     
     private func updateCollection() {
-        collectionView?.reloadData()
+        collectionView?.reloadSections(NSIndexSet(index: 1))
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        if let allphotos = subcategory.photos {
+            filteredPhotos = allphotos.filter { photo in
+                if let tag = photo.tags {
+                    return tag.lowercaseString.containsString(searchText.lowercaseString)
+                }
+                return false
+            }
+            
+            updateCollection()
+        }
+        
+    }
+    
+    public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if (section == 0) {
+            return CGSizeMake(self.view.frame.width, 60)
+        }
+        return CGSizeMake(self.view.frame.width, 0)
+    }
+    
+    override public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        if (kind == UICollectionElementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath)
+            if (indexPath.section == 0) {
+                if (!addedSearchBar) {
+                    headerView.addSubview(searchController.searchBar)
+                    searchController.searchBar.sizeToFit()
+                    addedSearchBar = true
+                }
+                
+            }
+            
+            return headerView
+        }
+        
+        return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
     }
     
     public override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let allImages = subcategory.photos {
-            return allImages.count
+        if (section == 1) {
+            if searchController.active && searchController.searchBar.text != "" {
+                return filteredPhotos.count
+            }
+            if let allImages = subcategory.photos {
+                return allImages.count
+            }
         }
         
         return 0
@@ -42,9 +102,16 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
     
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath)
-        if let _images = subcategory.photos {
+        
+        if let allphotos = subcategory.photos {
+            let photo: Photo
+            if searchController.active && searchController.searchBar.text != "" {
+                photo = filteredPhotos[indexPath.row]
+            } else {
+                photo = allphotos[indexPath.row]
+            }
             let imageView = cell.viewWithTag(100) as! UIImageView
-            imageView.image = _images[indexPath.row].photoImage()
+            imageView.image = photo.photoImage()
         }
         return cell
     }
@@ -53,8 +120,11 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
         if (segue.identifier == "ShowPhoto") {
             let nextvc = segue.destinationViewController as! PhotoViewVC
             let index = (collectionView?.indexPathsForSelectedItems()?.first?.row)!
-//            nextvc.photo = subcategory.photos![index]
-            nextvc.photosToBrowse = subcategory.photos!
+            if searchController.active && searchController.searchBar.text != "" {
+                nextvc.photosToBrowse = filteredPhotos
+            } else {
+                nextvc.photosToBrowse = subcategory.photos!
+            }
             nextvc.photoId = index
             nextvc.combination = combination
         }
@@ -90,3 +160,15 @@ public class PhotoCollectionVC : UICollectionViewController, UINavigationControl
 
     
 }
+
+extension PhotoCollectionVC: UISearchResultsUpdating {
+    public func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+//extension PhotoCollectionVC: UISearchControllerDelegate {
+//    public func didPresentSearchController(searchController: UISearchController) {
+//        searchController.searchBar.showsCancelButton = false
+//    }
+//}

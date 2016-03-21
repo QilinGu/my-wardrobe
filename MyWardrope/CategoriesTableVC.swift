@@ -50,7 +50,7 @@ public class CategoriesTableVC : UITableViewController {
             cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-            cell.textLabel?.text = cats[indexPath.row].name
+            cell.textLabel?.text = cats[indexPath.row].translatedName()
             if let subcats = cats[indexPath.row].subcategories {
                 var sum = 0
                 for subcat in subcats {

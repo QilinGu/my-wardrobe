@@ -21,7 +21,7 @@ public class SubCategoryTableVC : UITableViewController {
             navigationItem.rightBarButtonItem = nil
         }
 
-        self.title = category.name
+        self.title = category.translatedName()
         
         tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
     }
@@ -52,7 +52,7 @@ public class SubCategoryTableVC : UITableViewController {
             cell.imageView!.image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-            cell.textLabel?.text = cats[indexPath.row].name
+            cell.textLabel?.text = cats[indexPath.row].translatedName()
             
             if let photos = cats[indexPath.row].photos {
                 cell.detailTextLabel?.text = String(photos.count)

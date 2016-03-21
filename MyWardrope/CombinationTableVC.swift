@@ -26,7 +26,7 @@ public class CombinationTableVC : UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
-        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
+//        tableView.backgroundView = UIImageView(image: UIImage(named: "Background"))
     }
     
     public override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

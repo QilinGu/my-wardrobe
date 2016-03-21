@@ -20,7 +20,7 @@ public class NewCategoryVC : UIViewController, UINavigationControllerDelegate, U
     public override func viewDidLoad() {
         if let cat = caterogy {
             title = NSLocalizedString("Edit category", comment:"")
-            categoryNameTxtField.text = cat.name
+            categoryNameTxtField.text = cat.translatedName()
             if let icon = cat.iconImage() {
                 iconBtn.setImage(icon, forState: .Normal)
             }
